@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="dz.boukhlifa.mathmiddle"
+        version="1.0.0"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>كتب الرياضيات - المتوسط</name>
+    <description>كتب الرياضيات لطور التعليم المتوسط في الجزائر</description>
+    <author email="boukhelifa@example.com" href="https://example.com">الأستاذ بوخليفة محمد</author>
+
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+    <!-- Main application icon -->
+    <icon src="resources/iconTemplate.png" />
+
+    <preference name="Fullscreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="1800" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/splashTemplate.png" />
+    <preference name="AndroidWindowSplashScreenBackground" value="#071D55" />
+
+    <platform name="android">
+        <icon density="ldpi" src="resources/android/icons/icon-ldpi.png" />
+        <icon density="mdpi" src="resources/android/icons/icon-mdpi.png" />
+        <icon density="hdpi" src="resources/android/icons/icon-hdpi.png" />
+        <icon density="xhdpi" src="resources/android/icons/icon-xhdpi.png" />
+        <icon density="xxhdpi" src="resources/android/icons/icon-xxhdpi.png" />
+        <icon density="xxxhdpi" src="resources/android/icons/icon-xxxhdpi.png" />
+    </platform>
+
+    <platform name="ios">
+        <preference name="WKWebViewOnly" value="true" />
+        <feature name="CDVWKWebViewEngine">
+            <param name="ios-package" value="CDVWKWebViewEngine" />
+        </feature>
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+        <preference name="AllowInlineMediaPlayback" value="true" />
+        <preference name="DisallowOverscroll" value="true" />
+    </platform>
+</widget>
