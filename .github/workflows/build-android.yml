@@ -1,0 +1,46 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Add Android platform
+        run: cordova platform add android@latest
+
+      - name: Prepare Android project
+        run: cordova prepare android
+
+      - name: Build debug APK
+        run: |
+          set -euo pipefail
+          cordova build android --debug
+          mkdir -p build
+          APK=$(find platforms/android/app/build/outputs/apk/debug -type f -name '*.apk' -print -quit)
+          if [ -z "$APK" ]; then
+            echo 'ERROR: APK was not produced.'
+            find platforms/android/app/build/outputs -type f -name '*.apk' -print || true
+            exit 1
+          fi
+          cp "$APK" build/MathMiddle-debug.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v6
+        with:
+          name: math-middle-android-apk
+          path: build/MathMiddle-debug.apk
